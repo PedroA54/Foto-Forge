@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=IBM+Plex+Mono:wght@200&family=Montserrat:wght@300;400&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    <script src="./src/index.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>FotoForge</title>
+</head>
+
+<body>
+
+  <div id="editModal" class="modalOff">
+
+    <button id='modal-exit-button' class="close">X</button>
+
+    <h1 id="edit-modal-title">Edit Photo</h1>
+
+    <form id="edit-photo-form"> 
+
+      <div class='editModalInput'>
+        <h2>Name</h2>
+        <input  placeholder="Insert New Name" name="editName"></input>
+      </div>
+
+      <div class='editModalInput'>
+        <h2>Width</h2>
+        <input  placeholder="Insert New Width" name="editWidth"></input>
+      </div>
+
+      <div class='editModalInput'>
+        <h2>Height</h2>
+        <input  placeholder="Insert New Height" name="editHeight"></input>
+      </div>
+
+      <div class="editModalInput">
+        <h2>Black & White</h2>
+        <label class="switch">
+          <input name="editBAndW" type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="editModalInput">
+        <h2> Blur</h2>
+        <input name="editBlur" type="number" min="0" max="10" placeholder="0-10">
+      </div>
+
+      <div class="editModalInput">
+        <button class='editModalButton' id="submitEditForm">Edit Photo</button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div id='app-title' class="centered">
+
+    <h1>Foto ~ </h1>
+
+      <span id='photo-icon' class="material-symbols-outlined">camera</span>
+
+    <h1>~ Forge</h1>
+
+  </div>
+
+  <div id="app-container">
+
+    <div id="photo-preview">
+      
+      <div>
+
+        <button id="new-images-button">
+          <h4>New Images</h4>
+        </button>
+
+      </div>
+
+      <div id="photo-preview-bar">
+
+      </div>
+
+
+    </div>
+  
+    <div id="app-body"> 
+
+      <div id="app-inputs">
+
+        <div class= "photo-input">
+          <h2>Photo Name</h2>
+          <input placeholder= "Insert Photo Name" type="text" id ="photo-name-input">
+        </div>
+
+        <div class="photo-input"> 
+          <h2>Insert Width</h2>
+          <input placeholder =  "Insert Width" id = "photo-width"> </input> 
+        </div>
+
+        <div class="photo-input">
+          <h2>Insert Height</h2>
+          <input placeholder =  "Insert Height" id = "photo-height"> </input> 
+        </div>
+
+        <div class="photo-input">
+          <h2>Black & White</h2>
+          <label class="switch" id = toggle>
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="photo-input">
+          <h2> Blur</h2>
+          <input id="blur-input" type="number" min="0" max="10" placeholder="0-10">
+        </div>
+
+        <div class="photo-input">
+
+          <div class="input-container">
+            <button id="generate-button">Update Photo</button>
+          </div>
+
+          <div class="input-container">
+            <button id="save-button">Save Photo</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id ="photo-container"> 
+        <h1 id = "photo-message" class="centered">Loading...</h1>
+        <img id="display-photo">
+      </div>
+
+    </div>
+
+    <hr>
+
+    <h2 id ='photo-storage-title'>My Photos</h2>
+
+    <div id="photo-storage-container"></div>
+    
+  </div>
+
+</body>
+
+</html>
