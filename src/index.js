@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  
     //Fetch variables
     const url = "https://picsum.photos";
     const arrayUrl = "https://picsum.photos/v2/list?limit=12";
