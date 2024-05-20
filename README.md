@@ -94,6 +94,5 @@ This project is licensed under the MIT License
 
 ## Acknowledgments
 -  Thanks to Unsplash for providing the random photos.
-- Special thanks to our contributors for their valuable input and contributions.
 
 
