@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
-
-
     //Fetch variables
     const url = "https://picsum.photos";
     const arrayUrl = "https://picsum.photos/v2/list?limit=12";
@@ -12,9 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let photoId = Math.floor(Math.random() * 700);
     let photoWidth = 1600;
     let photoHeight = 1000;
-  
-  
-  
   
   
     //DOM Elements
@@ -33,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalExitButton = document.querySelector("#modal-exit-button");
     const editModalForm = document.querySelector("#edit-photo-form");
     const photoNameInput = document.querySelector("#photo-name-input");
-  
-  
   
   
   
@@ -91,8 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
   
-  
-  
     //FUNCTION DECLARATIONS
     //
     //
@@ -127,11 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         });
     };
+
     //Fetch and render photo for image editing
     const fetchPhoto = () => {
       randomPhoto.src = "";
       displayLoading();
-  
+      
       fetch(
         `${url}/id/${photoId}/${photoWidth}/${photoHeight}/?${
           grayscale ? "grayscale&" : ""
@@ -139,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       )
         .then((resp) => {
           const imgUrl = resp["url"];
-  
+        
           hideLoading();
           randomPhoto.src = imgUrl;
         })
@@ -161,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const newEditButton = document.createElement("button");
             const newDeleteButton = document.createElement("button");
             const newImgPreview = document.createElement("img");
-  
+          
             //Input Data into new elements
             newPhotoCard.id = photo.id;
             newPhotoName.innerHTML = photo.name;
@@ -192,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newEditButton.name = photo.id;
             newEditButton.addEventListener("click", (e) => editPhoto(e));
             newButtonContainer.classList.add("saved-photo-buttons");
-  
+            
             //Add Elements to new Div
             newPhotoCard.classList.add("photo-card");
             newButtonContainer.append(newEditButton, newDeleteButton);
@@ -204,20 +195,20 @@ document.addEventListener("DOMContentLoaded", () => {
               newGrayscale,
               newImgPreview
             );
-  
+            
             //Add new Photo Card to Saved Photos
             photoStorageContainer.append(newPhotoCard);
           });
         });
     };
-    //
+    
     //
     //HTTP Requests
     //
     //Post Request to local database
     const savePhoto = () => {
       const dbData = [];
-  
+      
       const getDbData = () => {
         fetch(dbUrl)
           .then((resp) => resp.json())
@@ -225,18 +216,18 @@ document.addEventListener("DOMContentLoaded", () => {
             photos.map((photo) => dbData.push(photo));
           });
       };
-  
+      
       getDbData();
       console.log(dbData);
-  
+      
       const generateUniqueId = () => {
         return Math.random().toString(36).substring(2);
       };
-  
+      
       const idExists = (id) => {
         return dbData.some((item) => item.id === id);
       };
-  
+      
       const rerouteGeneratedId = () => {
         let id;
         do {
@@ -244,10 +235,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } while (idExists(id));
         return id;
       };
-  
+      
       const uniqueID = rerouteGeneratedId();
       console.log("Unique ID:", uniqueID);
-  
+      
       const photoData = {
         id: uniqueID, //unique id that does not exist in db.json
         unsplashId: photoId,
@@ -257,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
         blur: blur,
         bAndW: grayscale,
       };
-  
+      
       function postName() {
         fetch(dbUrl, {
           method: "POST",
@@ -277,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const newEditButton = document.createElement("button");
             const newDeleteButton = document.createElement("button");
             const newImgPreview = document.createElement("img");
-  
+            
             //Input Data into new elements
             newPhotoName.innerHTML = savedPhoto.name;
             newPhotoSize.innerHTML = `Width: ${savedPhoto.width}px <> Height: ${savedPhoto.height}px`;
@@ -306,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newEditButton.name = savedPhoto.id;
             newEditButton.addEventListener("click", (e) => editPhoto(e));
             newButtonContainer.classList.add("saved-photo-buttons");
-  
+            
             newPhotoCard.classList.add("photo-card");
             newButtonContainer.append(newEditButton, newDeleteButton);
             newPhotoCard.append(
